@@ -1,8 +1,10 @@
+import Navbar from "./pages/Navbar";
+
 function App() {
   return (
-    <div>
-      <h1>Welcome to MERN App</h1>
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 }
 export default App;
