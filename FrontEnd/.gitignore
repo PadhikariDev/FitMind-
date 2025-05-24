@@ -24,7 +24,7 @@ dist-ssr
 *.sw?
 
 #colors 
-primary : #A0DEFF 60%
+primary : #E6FBFF 60%
 secondary : #73946B 30% 
 Accent : #DDA853 buttons dropdowns  #5E7B56 10% 
 text : #F5F5F5

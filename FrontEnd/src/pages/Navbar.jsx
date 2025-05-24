@@ -26,7 +26,7 @@ function Navbar() {
     };
 
     return (
-        <nav className="w-full bg-[#73946B] shadow-md px-6 py-4 flex justify-between items-center relative">
+        <nav className="w-full bg-[#73946B] shadow-md px-6 md:px-12 py-6 flex justify-between items-center sticky top-0 z-50">
             <div className="text-xl text-[#F5F5F5] md:ml-12 hover:cursor-pointer font-bold">FitMind-AI</div>
 
             {/* Desktop menu */}
