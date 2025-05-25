@@ -2,8 +2,6 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import dashboardImg from '../assets/dashboard.png';
 import mobileAppImg from '../assets/mobileApp.png';
-import bgImage from '../assets/background.png';
-import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function FirstPage() {
 
@@ -32,7 +30,7 @@ export default function FirstPage() {
     return (
         <div
             className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-12 py-10 min-h-screen bg-cover bg-center bg-no-repeat overflow-hidden"
-            style={{ backgroundImage: `url(${bgImage})` }}
+
         >
             {/* Left Content */}
             <div className="w-full md:w-1/2 space-y-6 text-center md:text-left mb-12 md:mb-0">
@@ -95,34 +93,15 @@ export default function FirstPage() {
                     </span>
 
                 </motion.div>
-
-                {[FaInstagram, FaLinkedin, FaGithub].map((Icon, idx) => (
-                    <motion.a
-                        key={idx}
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#DDA853] text-4xl hover:text-[#a6793d] transition-colors duration-300"
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{
-                            duration: 2 + idx * 0.3,
-                            repeat: Infinity,
-                            ease: 'easeInOut'
-                        }}
-                    >
-                        <Icon />
-                    </motion.a>
-                ))}
-
             </div>
 
             {/* Right Images */}
-            <div className="w-full md:w-1/2 relative flex justify-center items-center h-full gap-4">
+            <div className="w-full md:w-1/2 relative flex justify-center items-center h-full sm:min-h-screen  overflow-visible">
                 {/* Foreground Mobile Image */}
                 <motion.img
                     src={mobileAppImg}
                     alt="Mobile App"
-                    className="w-[180px] sm:w-[220px] md:w-[260px] lg:w-[280px] relative z-20 drop-shadow-[0_20px_30px_rgba(115,148,107,0.4)]"
+                    className="w-[140px] sm:w-[180px] md:w-[260px] lg:w-[280px] relative z-20 "
                     initial={{ opacity: 0, x: -60, scale: 0.95 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -132,14 +111,13 @@ export default function FirstPage() {
                 <motion.img
                     src={dashboardImg}
                     alt="Dashboard"
-                    className="w-[300px] sm:w-[400px] md:w-[460px] lg:w-[500px] rounded-xl shadow-xl relative z-10 -ml-6 sm:-ml-10 drop-shadow-[0_30px_40px_rgba(115,148,107,0.3)]"
+                    className="w-[220px] sm:w-[300px] md:w-[460px] lg:w-[500px] rounded-xl shadow-xl relative z-10
+               -ml-0 sm:-ml-6 md:-ml-10 "
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: 'easeOut' }}
                 />
             </div>
-
-
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -26,9 +27,12 @@ function Navbar() {
     };
 
     return (
-        <nav className="w-full bg-[#73946B] shadow-md px-6 md:px-12 py-6 flex justify-between items-center sticky top-0 z-50">
-            <div className="text-xl text-[#F5F5F5] md:ml-12 hover:cursor-pointer font-bold">FitMind-AI</div>
-
+        <nav className="fixed w-full bg-[#73946B] shadow-md px-6 md:px-12 py-6 flex justify-between items-center  top-0 z-50">
+            <Link to="/">
+                <div className="text-xl text-[#F5F5F5] md:ml-12 hover:cursor-pointer font-bold">
+                    FitMind-AI
+                </div>
+            </Link>
             {/* Desktop menu */}
             <div className="hidden md:flex text-[#F5F5F5] gap-12 mr-12 text-sm font-medium items-center relative">
                 <a href="#home" className="hover:text-[#DDA853]">Home</a>
@@ -108,8 +112,13 @@ function Navbar() {
                                 transition={{ duration: 0.2 }}
                                 className="absolute bg-[#5E7B56] shadow-md rounded mt-2 py-2 w-40 z-10"
                             >
-                                <li><a href="#login" className="block px-4 py-2 hover:text-[#DDA853]">Login</a></li>
-                                <li><a href="#create-account" className="block px-4 py-2 hover:text-[#DDA853]">Create Account</a></li>
+                                <li><Link to="/login" className="block px-4 py-2 hover:text-[#DDA853]" onClick={() => setLoginOpen(false)} >Login</Link></li>
+                                <li><Link
+                                    to="/signup"
+                                    className="block px-4 py-2 hover:text-[#DDA853]"
+                                    onClick={() => setLoginOpen(false)} // Close dropdown on click
+                                >Create Account</Link>
+                                </li>
                             </motion.ul>
                         )}
                     </AnimatePresence>
@@ -231,8 +240,26 @@ function Navbar() {
                                             transition={{ duration: 0.3 }}
                                             className="pl-4 mt-2 flex flex-col gap-2"
                                         >
-                                            <li><a href="#login" className="block hover:text-[#DDA853]">Login</a></li>
-                                            <li><a href="#create-account" className="block hover:text-[#DDA853]">Create Account</a></li>
+                                            <li><Link
+                                                to="/login"
+                                                className="block hover:text-[#DDA853]"
+                                                onClick={() => {
+                                                    setIsOpen(false); // close mobile menu after clicking
+                                                    setLoginOpen(false); // close dropdown
+                                                }}
+                                            >
+                                                Login
+                                            </Link></li>
+                                            <li><Link
+                                                to="/signup"
+                                                className="block hover:text-[#DDA853]"
+                                                onClick={() => {
+                                                    setIsOpen(false); // close mobile menu after clicking
+                                                    setLoginOpen(false); // close dropdown
+                                                }}
+                                            >
+                                                Create Account
+                                            </Link></li>
                                         </motion.ul>
                                     )}
                                 </AnimatePresence>
