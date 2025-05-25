@@ -7,6 +7,10 @@ router.get("/signup", (req, res) => {
     res.status(200).send("Signup GET route is active");
 });
 
+router.get("/signin", (req, res) => {
+    res.status(200).send("Signin GET route is active");
+})
+
 router.post("/signup", async (req, res) => {
     const { fullname, email, password } = req.body;
     try {
@@ -22,6 +26,20 @@ router.post("/signup", async (req, res) => {
         res.status(201).json({ message: "new user has been created." })
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+})
+
+router.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const token = await User.matchPasswordAndGenerateToken(email, password);
+        if (!token) {
+            return redirect("/signup");
+        }
+        res.status(200).cookie("token", token).json({ message: "Login sucessfull" });
+    } catch (error) {
+        console.error("Signin error:", error);
         res.status(500).json({ message: "Server error" });
     }
 })
