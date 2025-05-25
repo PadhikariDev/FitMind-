@@ -1,9 +1,44 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    });
+
+    const navigate = useNavigate();
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch("/api/signin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await res.json();
+            if (res.ok) {
+                alert("signin Successfull!");
+                navigate("/");
+            } else {
+                alert(data.message || "Invalid Credentials")
+            }
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred during signin.");
+        }
+    }
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f8fafc] to-[#e2e8f0] px-4 py-8">
-            <form className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md border border-gray-200">
+            <form onSubmit={handleSubmit} className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md border border-gray-200">
                 <Link to="/" className="block text-center mb-6">
                     <div className="text-3xl font-bold text-[#DDA853] hover:text-[#debc72] transition">
                         FitMind<span className="text-[#333333]">-AI</span>
@@ -26,6 +61,8 @@ export default function Login() {
                         id="email"
                         name="email"
                         placeholder="you@example.com"
+                        value={formData.email}
+                        onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                         required
                     />
@@ -43,6 +80,8 @@ export default function Login() {
                         id="password"
                         name="password"
                         placeholder="••••••••"
+                        value={formData.password}
+                        onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                         required
                     />
