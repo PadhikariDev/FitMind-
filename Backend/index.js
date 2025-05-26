@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import checkForAuthenticationCookie from "./middleware/authentication.js";
 import { fileURLToPath } from "url";
 import path from "path";
+import cors from "cors"
 
 dotenv.config();
 
@@ -15,7 +16,12 @@ const __dirname = path.dirname(__filename);
 
 
 const PORT = process.env.PORT;
+
 const app = express();
+app.use(cors({
+    origin: "http://localhost:5173",  // your React frontend URL
+    credentials: true                 // allow cookies/auth credentials
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.json());
