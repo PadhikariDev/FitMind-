@@ -9,11 +9,12 @@ import FAQSection from "./pages/faq"
 import Footer from "./pages/footer";
 import Signup from "./components/signup";
 import Login from "./components/login";
+import Home from "./components/home"
 
 
 function App() {
   const location = useLocation();
-  const hideNavAndFooter = location.pathname === "/signup" || location.pathname === "/login";
+  const hideNavAndFooter = location.pathname === "/signup" || location.pathname === "/login" || location.pathname === "/home";
   return (
     <>
       {!hideNavAndFooter && <Navbar />}
@@ -33,8 +34,10 @@ function App() {
             </>
           }
         />
+        <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+
       </Routes>
     </>
 

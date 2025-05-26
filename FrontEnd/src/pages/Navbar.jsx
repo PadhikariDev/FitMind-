@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { motion, AnimatePresence } from 'framer-motion'
 
+
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [featuresOpen, setFeaturesOpen] = useState(false);

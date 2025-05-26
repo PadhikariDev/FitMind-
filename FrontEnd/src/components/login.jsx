@@ -20,12 +20,13 @@ export default function Login() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData),
+                credentials: "include",
             });
             const data = await res.json();
             if (res.ok) {
                 alert("signin Successfull!");
-                navigate("/");
+                navigate("/home");
             } else {
                 alert(data.message || "Invalid Credentials")
             }
