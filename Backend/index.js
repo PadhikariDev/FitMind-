@@ -3,6 +3,7 @@ import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./connection.js";
 import authRoutes from "./routes/user.js"
+import statusRoutes from "./routes/fitnessStatus.js"
 import cookieParser from "cookie-parser";
 import checkForAuthenticationCookie from "./middleware/authentication.js";
 import { fileURLToPath } from "url";
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(checkForAuthenticationCookie("token"));
 app.use("/api", authRoutes);
+app.use("/fitness", statusRoutes);
 
 connectDB();
 
