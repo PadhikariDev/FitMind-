@@ -25,7 +25,7 @@ const WelcomeAlert = ({ user }) => {
                         <strong>Role:</strong> {user.role}
                     </p>
                     <p className="text-[#4ECDC4] text-sm italic">
-                        get back to shape
+                        👋 Welcome back! Ready to crush your fitness goals today?
                     </p>
                 </div>
 

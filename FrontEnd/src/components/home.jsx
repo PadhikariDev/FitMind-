@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { motion, AnimatePresence } from 'framer-motion'
 import WelcomeAlert from "./welcomeAlert";
+import { FitnessForm } from "./fitnessStatus"
 
 
 const Home = () => {
@@ -287,10 +288,10 @@ const Home = () => {
                 </AnimatePresence>
             </nav>
 
-            <WelcomeAlert user={user} />
-
-            <div></div>
-
+            <main className="pt-20"> {/* 20 = 5rem = ~80px padding-top */}
+                <WelcomeAlert user={user} />
+                <FitnessForm />
+            </main>
         </>
     );
 };

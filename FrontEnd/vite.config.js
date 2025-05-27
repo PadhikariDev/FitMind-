@@ -8,6 +8,8 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': 'http://localhost:3000',
+
+      '/fitness': 'http://localhost:3000'
     }
   },
   plugins: [react(), tailwindcss()],
